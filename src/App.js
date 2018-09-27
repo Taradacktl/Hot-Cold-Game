@@ -3,7 +3,7 @@ import './App.css';
 import GameForm from './game-form';
 import GuessNumber from './guess-number';
 import GuessList from './guess-list';
-import GuessTemperature from './guess-temperature';
+
 
 export default class App extends React.Component {
   constructor(props) {
@@ -16,6 +16,7 @@ export default class App extends React.Component {
   }
 
   handleGuess(number) {
+    
     const { correctAnswer } = this.state
     const diff = Math.abs(correctAnswer - number)
     let newMessage = 'Cold'
@@ -25,19 +26,23 @@ export default class App extends React.Component {
     if (diff < 10) {
       newMessage = 'Hot'
     }
+    if (diff === 0) {
+      newMessage = 'You won!'
+    }
     this.setState({ message: newMessage, 
       guesses: [...this.state.guesses, number], })
   }
 
   render() {
+    const guesses = this.state;
+    const guessNumber = guesses.length;
     return (
       <div className="App">
         <h1 className="App-title">Hot and Cold Game</h1>
         <h2>{this.state.message}</h2>
         <GameForm clickHandler={this.handleGuess.bind(this)} />
-        <GuessNumber guesses={this.state.guesses}/>
-        <GuessList />
-        <GuessTemperature />
+        <GuessNumber guessNumber={guessNumber}/>
+        <GuessList guesses={this.state.guesses}/>
       </div>
     );
   }
