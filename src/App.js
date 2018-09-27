@@ -25,7 +25,8 @@ export default class App extends React.Component {
     if (diff < 10) {
       newMessage = 'Hot'
     }
-    this.setState({message:newMessage})
+    this.setState({ message: newMessage, 
+      guesses: [...this.state.guesses, number], })
   }
 
   render() {
@@ -34,7 +35,7 @@ export default class App extends React.Component {
         <h1 className="App-title">Hot and Cold Game</h1>
         <h2>{this.state.message}</h2>
         <GameForm clickHandler={this.handleGuess.bind(this)} />
-        <GuessNumber />
+        <GuessNumber guesses={this.state.guesses}/>
         <GuessList />
         <GuessTemperature />
       </div>
