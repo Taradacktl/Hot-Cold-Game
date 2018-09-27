@@ -3,9 +3,9 @@ import './guess-list.css';
 
 export default function GuessList(props) {
     const numbers= props.guesses.map((guess, index) => (
-        <li key={index}>
+        <ul key={index}>
           {guess}
-        </li>
+        </ul>
     ));
     return (
         <div className="guess-list">
