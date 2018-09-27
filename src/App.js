@@ -29,10 +29,13 @@ export default class App extends React.Component {
     if (diff === 0) {
       newMessage = 'You won!'
     }
-    this.setState({ message: newMessage, 
-      guesses: [...this.state.guesses, number],
-      guessNumber: [this.state.guesses.length + 1]
-    })
+    if (this.state.guesses.length < 10){
+      this.setState({ message: newMessage, 
+        guesses: [...this.state.guesses, number],
+        guessNumber: [this.state.guesses.length + 1]
+      })
+    }
+    else this.setState({ message: 'Game Over'})
   }
 
   render() {
