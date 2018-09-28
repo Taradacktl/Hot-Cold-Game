@@ -17,14 +17,15 @@ export default class App extends React.Component {
   }
 
   handleGuess(number) {
+    if (number > 0 && number < 100) {
     const { correctAnswer } = this.state
     const diff = Math.abs(correctAnswer - number)
-    let newMessage = 'Cold'
+    let newMessage = 'You are Cold'
     if (diff < 20) {
-      newMessage = 'Warm'
+      newMessage = 'Getting Warm'
     }
     if (diff < 10) {
-      newMessage = 'Hot'
+      newMessage = 'You\'re Hot'
     }
     if (diff === 0) {
       newMessage = 'You won!'
@@ -36,6 +37,9 @@ export default class App extends React.Component {
       })
     }
     else this.setState({ message: 'Game Over'})
+  }
+
+else this.setState({ message: 'Number must be between 1 and 100'})
   }
 
   render() {
