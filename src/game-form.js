@@ -12,6 +12,9 @@ export default function GameForm(props) {
                 ev.preventDefault()
                 props.clickHandler(document.getElementById('the-number').value)
             }}>Guess</button>
+            <button onClick={ev => {
+                ev.preventDefault()
+                props.restartButton()}}>Restart</button>
         </div>
     );
 };

@@ -16,6 +16,15 @@ export default class App extends React.Component {
     };
   }
 
+  restartGame(){
+    this.setState({
+      guesses: [],
+      guessNumber: 0,
+      message: "Enter a number between 1 and 100",
+      correctAnswer: Math.floor(Math.random() * 100) + 1
+    });
+  }
+
   handleGuess(number) {
     if (number > 0 && number < 100) {
     const { correctAnswer } = this.state
@@ -42,12 +51,14 @@ export default class App extends React.Component {
 else this.setState({ message: 'Number must be between 1 and 100'})
   }
 
+
   render() {
     return (
       <div className="App">
         <h1 className="App-title">Hot and Cold Game</h1>
         <h2>{this.state.message}</h2>
-        <GameForm clickHandler={this.handleGuess.bind(this)} />
+        <GameForm clickHandler={this.handleGuess.bind(this)}
+         restartButton={() => this.restartGame()}/>
         <GuessNumber guessNumber={this.state.guessNumber}/>
         <GuessList guesses={this.state.guesses}/>
       </div>
